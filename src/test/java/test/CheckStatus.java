@@ -19,7 +19,7 @@ import javax.mail.internet.MimeMessage;
 import page.HomePage;
 
 public class CheckStatus extends BaseTest {
-	String[] pinCode = { "751007", "751015", "752069" }; 
+	String[] pinCode = { "751007", "751015", "752069" }; //pincodes
 
 	@Test
 	public void sendMailStatus() throws InterruptedException {
@@ -30,7 +30,7 @@ public class CheckStatus extends BaseTest {
 		for (int i = 0; i < pinCode.length; i++) {
 			homePage.enterPinCode(pinCode[i]);
 			homePage.clickOnsearchButton();
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 
 			mail.add("pinCode:" + pinCode[i]);
 			if(homePage.stopMsgCheck()) {
@@ -63,8 +63,8 @@ public class CheckStatus extends BaseTest {
 	}
 
 	public void sendEmail(String mailsubject) {
-		final String username = "siba2005rta@gmail.com";
-		final String password = "deimiqbrvapkkncv";
+		final String username = "email";
+		final String password = "app_password";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.starttls.enable", "true");
@@ -81,10 +81,10 @@ public class CheckStatus extends BaseTest {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("siba2005rta@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("siba2005rta@gmail.com"));
-			message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("laren.routray@gmail.com"));
-			message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse("sauravdas.sapiendevil@gmail.com"));
+			message.setFrom(new InternetAddress("sender@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("receive@gmail.com"));
+			message.setRecipients(Message.RecipientType.CC, InternetAddress.parse("cc@gmail.com"));
+			message.setRecipients(Message.RecipientType.BCC, InternetAddress.parse("bcc@gmail.com"));
 			message.setSubject("Important!!!Vaccine is available.Hurray!!!!");
 			message.setText(mailsubject);
 
